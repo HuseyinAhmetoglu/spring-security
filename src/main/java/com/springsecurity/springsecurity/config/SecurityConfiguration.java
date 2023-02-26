@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -39,8 +41,13 @@ public class SecurityConfiguration {
 //                .withUser("user").password("{noop}1234").roles("user");
 
         authenticationManagerBuilder.userDetailsService(userDetailsService);
-
         return authenticationManagerBuilder.build();
     }
+
+    //Deprecated olan metot şifrenin önüne {noop} getirmen yeterli
+//    @Bean
+//    public PasswordEncoder getPasswordEncoder() {
+//        return NoOpPasswordEncoder.getInstance();
+//    }
 }
 
